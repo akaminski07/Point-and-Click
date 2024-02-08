@@ -8,8 +8,9 @@ body {
 }
 
 h1 {
-    font-family: sans-serif;
+    font-family: 'Protest Revolution', sans-serif;
     color: white;
+
 }
 
 p {
@@ -23,29 +24,29 @@ p {
 }
 
 #gameWindow {
-    position:relative;
-    width:800px;
-    height:500px;
+    position: relative;
+    width: 800px;
+    height: 600px;
     grid-column-start: 2;
     grid-row-start: 2;
-    
+
     background-color: blue;
 }
 
 #inventoryBox {
-    position:relative;
+    position: relative;
     display: block;
     left: 10px;
     top: 10px;
     width: 100px;
     height: 80px;
-    color:white;
+    color: white;
     background-color: #7d5600;
     border: white 1px solid;
     padding: px;
 }
 
-#dialogbar{
+#dialogbar {
     bottom: 0px;
 }
 
@@ -58,10 +59,11 @@ p {
 .foreground {
     position: absolute;
     z-index: 1000;
+    transition: all 1s ease-in-out;
 }
 
 #brownBar {
-    position:absolute;
+    position: absolute;
     height: 32px;
     width: 800px;
     background-color: brown;
@@ -82,4 +84,47 @@ p {
     background-color: red;
     width: 100px;
     height: 100px;
+}
+
+.background {
+    position: absolute;
+    z-index: 0;
+}
+
+.heroCharacter {
+    position: absolute;
+    z-index: 100;
+    transition: all 1s;
+}
+
+#door1 {
+    width: 64px;
+    height: 64px;
+    background-color: rgb(255, 0, 0);
+    opacity: 1;
+    top: 150px;
+    left: 400px;
+}
+
+#mainCharacter {
+    width: 32px;
+    height: 64px;
+    background-color: #26d0ff;
+    left: 400px;
+    top: 304px;
+}
+
+#sign {
+    width: 64px;
+    height: 32px;
+    background-color: #763500;
+    top: 350px;
+    left: 10px;
+}
+
+#tilemap {
+    width: 800px;
+    height: 608px;
+    top: 0px;
+    left: 0px;
 }

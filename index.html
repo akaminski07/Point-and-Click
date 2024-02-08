@@ -1,22 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap">
+
     <title>Point and Click Adventure</title>
-</head> 
+</head>
+
 <body>
-    <div id="title"><h1>Point and Click Adventure</h1></div>
+    <div id="title">
+        <h1>Point and Click Adventure game</h1>
+    </div>
+
     <div id="gameWindow">
+
         <div id="dialogbar" class="foreground">
             <div id="setMainDialog">
                 <div id="mainCharacterSpeech" class="foreground"></div>
                 <div id="counterSpeech" class="foreground"></div>
                 <div id="brownBar"></div>
+
             </div>
         </div>
-        <div id="inventoryBox"></div>
-    </div>
+
+        <div id="inventoryBox">
+            <p>Inventory</p>
+            <ul id="inventoryList">
+
+            </ul>
+        </div>
+
+        <div id="door1" class="foreground"></div>
+        <div id="sign" class="foreground"></div>
+
+        <div id="mainCharacter" class="heroCharacter">
+
+        </div>
+        <div id="tilemap" class="background">
+            <img src="img/tilemap1.jpg" draggable=false alt="tilemap level 1">
+        </div>
+        <script src="D:\Githubb\IdkWhatName\js\main.js"></script>
 </body>
+
+
 </html>
