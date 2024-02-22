@@ -21,8 +21,12 @@
         <div id="dialogbar" class="foreground">
 
             <div id="setMainDialog">
-                <div id="mainCharacterSpeech" class="foreground"></div>
-                <div id="counterSpeech" class="foreground"></div>
+                <div id="mainCharacterAvatar" class="foreground">
+                    <img src="Img/portairt.png" alt="main character avatar">
+                </div>
+                <div id="mainCharacterSpeech" class="foreground speech-bubble">...</div>
+                <div id="counterSpeech" class="foreground speech-bubble">...</div>
+                <div id="counterAvatar" class="foreground"></div>
                 <div id="brownBar"></div>
 
             </div>
@@ -39,11 +43,13 @@
 
         <div id="key1" class="foreground"></div>
         <div id="door1" class="foreground"></div>
+
+
         <div id="sign" class="foreground"></div>
         <div id="door2" class="foreground"></div>
 
         <div id="mainCharacter" class="heroCharacter">
-
+            <img id="mcImage" draggable=false src="img/animated-character-1-idle.gif" alt="main character image">
         </div>
         <div id="tilemap" class="background">
             <img src="img/tilemap1.jpg" draggable=false alt="tilemap level 1">

@@ -1,17 +1,17 @@
-document.getElementById("title").innerText = "Point and Click Adventure game";
-
 //Game window reference
 const gameWindow = document.getElementById("gameWindow");
 
 //Game state
 gameState = {
     "door2locked": true,
+
 }
 
 //Main Character
 const mainCharacter = document.getElementById("mainCharacter");
 const offsetCharacter = 16;
 
+sec = 1000;
 //Inventory
 const inventoryBox = document.getElementById("inventoryBox");
 const inventoryList = document.getElementById("inventoryList");
@@ -32,7 +32,6 @@ gameWindow.onclick = function (e) {
 
 
         case "door1":
-            mainCharacter.style.backgroundColor = "#FFFF00";
             door1.style.opacity = 0.5;
             sign.style.opacity = 1;
             if (document.getElementById("key1") !== null) {
@@ -43,6 +42,7 @@ gameWindow.onclick = function (e) {
                 keyElement.innerText = "Key";
                 inventoryList.appendChild(keyElement);
             }
+
 
             break;
         case "door2":
@@ -61,16 +61,39 @@ gameWindow.onclick = function (e) {
             break;
 
         case "sign":
-            mainCharacter.style.backgroundColor = "#FFFF00";
             sign.style.opacity = 0.5;
             door1.style.opacity = 1;
             break;
-
         default:
-            mainCharacter.style.backgroundColor = "#26d0ff";
             door1.style.opacity = 1;
             sign.style.opacity = 1;
             break;
+
+
+        case "statue":
+            showMessage(mainCharacter, "Wow, cool statue...");
+            setTimeout(showMessage, 4 * sec, counterSpeech, "I can talk you know... dummy.")
     }
 
 }
+
+updateInventory(gameState.inventory, inventoryList);
+
+function updateInventory(Inventory, inventoryList) {
+
+}
+
+function showMessage(targetBalloon, message) {
+    document.getElementById(targetBalloon).style.opacity = "1";
+    targetBalloon.innerText = message;
+    setTimeout(hideMessage, 2 * sec, targetBalloon);
+}
+setTimeout(showMessage, 1 * sec, "mainCharacterSpeech");
+setTimeout(showMessage, 2 * sec, "counterSpeech");
+
+
+
+
+function hideMessage(targetballoon) {
+    document.getElementById(targetBalloon).style.opacity = "0";
+};
