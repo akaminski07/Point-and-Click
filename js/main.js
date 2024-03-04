@@ -2,22 +2,38 @@
 const gameWindow = document.getElementById("gameWindow");
 
 //Game state
-gameState = {
+let gameState = {
     "door2locked": true,
+}
+localStorage.removeItem("gameState");
+//Handle browser storage
+if (typeof (Storage) !== "undefined") {
+    if (localStorage.gameState) {
+        gameState = JSON.parse(localStorage.gameState)
+    } else {
+        localStorage.setItem("gameState", JSON.stringify(gameState))
+    }
+} else {
+    alert('Web storage not supported')
+}
 
+if (localStorage.keyPickedUp) {
+    document.getElementById("key1").remove();
 }
 
 //Main Character
 const mainCharacter = document.getElementById("mainCharacter");
 const offsetCharacter = 16;
 
-sec = 1000;
+const sec = 1000;
 //Inventory
 const inventoryBox = document.getElementById("inventoryBox");
 const inventoryList = document.getElementById("inventoryList");
 
 const door1 = document.getElementById("door1");
 const sign = document.getElementById("sign");
+
+updateInventory(gameState.inventory, inventoryList);
 
 gameWindow.onclick = function (e) {
     var rect = gameWindow.getBoundingClientRect();
@@ -49,6 +65,7 @@ gameWindow.onclick = function (e) {
             if (gameState.door2locked == true) {
                 if (document.getElementById("inv-key") !== null) {
                     gameState.door2locked = false;
+                    document.getElementById("inv-key").remove();
                     console.log('Door unlocked!')
                 } else {
                     alert("Door is locked!");
@@ -88,12 +105,20 @@ function showMessage(targetBalloon, message) {
     targetBalloon.innerText = message;
     setTimeout(hideMessage, 2 * sec, targetBalloon);
 }
+
 setTimeout(showMessage, 1 * sec, "mainCharacterSpeech");
 setTimeout(showMessage, 2 * sec, "counterSpeech");
 
-
-
-
-function hideMessage(targetballoon) {
-    document.getElementById(targetBalloon).style.opacity = "0";
+function hideMessage(counterAvatar) {
+    document.getElementById("counterAvatar").style.opacity = "0";
 };
+
+/** 
+* store gameState into localStorage.
+* @param {Object} gameState
+*/
+
+function saveToBrowser(gameState) {
+    localStorage.gameState = JSON.stringify(gameState);
+};
+
