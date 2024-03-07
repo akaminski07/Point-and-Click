@@ -85,7 +85,7 @@ p {
     right: 0px;
     bottom: 0px;
 
-    background-color: red;
+
     width: 100px;
     height: 100px;
 }
@@ -134,11 +134,11 @@ p {
 }
 
 #sign {
-    width: 64px;
+    width: 32px;
     height: 32px;
-    background-color: #763500;
-    top: 350px;
-    left: 10px;
+
+    top: 224px;
+    left: 417px;
 }
 
 #tilemap {
@@ -158,7 +158,7 @@ p {
     top: 15px;
 }
 
-.speech-bubble {
+.speechBubble {
     background-color: #fff;
     border-radius: 60px;
     color: #000000;

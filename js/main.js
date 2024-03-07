@@ -23,7 +23,11 @@ if (localStorage.keyPickedUp) {
 
 //Main Character
 const mainCharacter = document.getElementById("mainCharacter");
+const mainCharacterSpeech = document.getElementById("mainCharacterSpeech");
+const counterSpeech = document.getElementById("counterSpeech");
 const offsetCharacter = 16;
+
+const counterAvatar = document.getElementById("counterAvatar");
 
 const sec = 1000;
 //Inventory
@@ -48,6 +52,8 @@ gameWindow.onclick = function (e) {
 
 
         case "door1":
+            showMessage(mainCharacterSpeech, "Wow, cool statue...");
+            setTimeout(showMessage, 4 * sec, counterSpeech, "I can talk you know... dummy.");
             door1.style.opacity = 0.5;
             sign.style.opacity = 1;
             if (document.getElementById("key1") !== null) {
@@ -57,6 +63,7 @@ gameWindow.onclick = function (e) {
                 keyElement.id = "inv-key";
                 keyElement.innerText = "Key";
                 inventoryList.appendChild(keyElement);
+
             }
 
 
@@ -78,8 +85,10 @@ gameWindow.onclick = function (e) {
             break;
 
         case "sign":
-            sign.style.opacity = 0.5;
-            door1.style.opacity = 1;
+            setTimeout(showMessage, 0 * sec, mainCharacterSpeech, "I can't read what this sign says.");
+            setTimeout(showMessage, 4 * sec, counterSpeech, "I can talk you know... dummy.");
+            setTimeout(showMessage, 8 * sec, mainCharacterSpeech, "Oh sorry, I didn't know signs can talk now...");
+            setTimeout(showMessage, 12 * sec, counterSpeech, "Search the left house first, then you may consider searching the one on the right");
             break;
         default:
             door1.style.opacity = 1;
@@ -89,7 +98,7 @@ gameWindow.onclick = function (e) {
 
         case "statue":
             showMessage(mainCharacter, "Wow, cool statue...");
-            setTimeout(showMessage, 4 * sec, counterSpeech, "I can talk you know... dummy.")
+            setTimeout(showMessage, 2 * sec, counterSpeech, "I can talk you know... dummy.")
     }
 
 }
@@ -100,17 +109,25 @@ function updateInventory(Inventory, inventoryList) {
 
 }
 
-function showMessage(targetBalloon, message) {
-    document.getElementById(targetBalloon).style.opacity = "1";
-    targetBalloon.innerText = message;
-    setTimeout(hideMessage, 2 * sec, targetBalloon);
+/**
+    * It will show dialog and trigger sound.
+    * @param {getElementById} targetBubble 
+    * @param {string} message
+    * @param {getElementById} targetSound 
+    */
+
+function showMessage(targetBubble, message) {
+    targetBubble.style.opacity = 1;
+    targetBubble.innerText = message;
+    setTimeout(hideMessage, 4 * sec, targetBubble);
 }
 
 setTimeout(showMessage, 1 * sec, "mainCharacterSpeech");
 setTimeout(showMessage, 2 * sec, "counterSpeech");
 
-function hideMessage(counterAvatar) {
-    document.getElementById("counterAvatar").style.opacity = "0";
+function hideMessage(targetBubble) {
+    targetBubble.innerText = "...";
+    targetBubble.style.opacity = 0;
 };
 
 /** 
