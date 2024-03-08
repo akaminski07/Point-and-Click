@@ -26,14 +26,17 @@ const mainCharacter = document.getElementById("mainCharacter");
 const mainCharacterSpeech = document.getElementById("mainCharacterSpeech");
 const counterSpeech = document.getElementById("counterSpeech");
 const offsetCharacter = 32;
-var doorOpen = false;
 const counterAvatar = document.getElementById("counterAvatar");
 
+//Second
 const sec = 1000;
+
 //Inventory
 const inventoryBox = document.getElementById("inventoryBox");
 const inventoryList = document.getElementById("inventoryList");
 
+//Interactive stuff
+var doorOpen = false;
 const door1 = document.getElementById("door1");
 const building1 = document.getElementById("building1");
 const button = document.getElementById("buttonInHouse");
@@ -85,7 +88,6 @@ gameWindow.onclick = function (e) {
                 inventoryList.appendChild(keyElement);
             }
 
-
             break;
         case "door2":
             console.log('door2');
@@ -106,7 +108,6 @@ gameWindow.onclick = function (e) {
                 button.classList.remove('hidden');
             }
 
-
             break;
 
         case "sign":
@@ -114,7 +115,7 @@ gameWindow.onclick = function (e) {
             setTimeout(showMessage, 4 * sec, counterSpeech, "I can talk you know... dummy.");
             setTimeout(showMessage, 8 * sec, mainCharacterSpeech, "Oh sorry, I didn't know signs can talk now...");
             setTimeout(showMessage, 12 * sec, counterSpeech, "Search the left house first, then you may consider searching the one on the right");
-            setTimeout(showMessage, 16 * sec, counterSpeech, "Then, when you find the button. You sho-...");
+            setTimeout(showMessage, 14.5 * sec, counterSpeech, "Then, when you find the button. You sho-...");
             break;
 
         case "buttonInHouse":
@@ -126,22 +127,17 @@ gameWindow.onclick = function (e) {
 
         case "portalImage":
             setTimeout(disappear, 1 * sec);
-            setTimeout(alert("Finished game!"), 2 * sec);
-
             break;
-
 
         default:
             door1.style.opacity = 1;
             sign.style.opacity = 1;
             break;
-
     }
 
 }
 
 updateInventory(gameState.inventory, inventoryList);
-
 
 function disappear() {
     mainCharacter.classList.add('hidden');
