@@ -25,8 +25,8 @@ if (localStorage.keyPickedUp) {
 const mainCharacter = document.getElementById("mainCharacter");
 const mainCharacterSpeech = document.getElementById("mainCharacterSpeech");
 const counterSpeech = document.getElementById("counterSpeech");
-const offsetCharacter = 16;
-
+const offsetCharacter = 32;
+var doorOpen = false;
 const counterAvatar = document.getElementById("counterAvatar");
 
 const sec = 1000;
@@ -35,6 +35,9 @@ const inventoryBox = document.getElementById("inventoryBox");
 const inventoryList = document.getElementById("inventoryList");
 
 const door1 = document.getElementById("door1");
+const building1 = document.getElementById("building1");
+const button = document.getElementById("buttonInHouse");
+const portal = document.getElementById("portal");
 const sign = document.getElementById("sign");
 
 updateInventory(gameState.inventory, inventoryList);
@@ -44,16 +47,33 @@ gameWindow.onclick = function (e) {
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
 
-    console.log(e.target.id);
+    console.log(x, y);
+
+    if (x < 0) x = 0;
+    if (y < 0) y = 0;
+    if (x > rect.width) x = rect.width;
+    if (y > rect.height) y = rect.height;
+
+
+    if (building1.contains(e.target) || button.classList.add('hidden')) {
+        console.log("inside");
+    } else {
+        if (!mainCharacter.contains(e.target)) {
+            building1.classList.add('hidden');
+            button.classList.add('hidden');
+        }
+        console.log("outside");
+    }
+
     mainCharacter.style.left = x - offsetCharacter + "px";
     mainCharacter.style.top = y - offsetCharacter + "px";
 
+    // console.log(mainCharacter.style.left, mainCharacter.style.top);
+    console.log("e target", e.target);
     switch (e.target.id) {
 
 
         case "door1":
-            showMessage(mainCharacterSpeech, "Wow, cool statue...");
-            setTimeout(showMessage, 4 * sec, counterSpeech, "I can talk you know... dummy.");
             door1.style.opacity = 0.5;
             sign.style.opacity = 1;
             if (document.getElementById("key1") !== null) {
@@ -63,22 +83,27 @@ gameWindow.onclick = function (e) {
                 keyElement.id = "inv-key";
                 keyElement.innerText = "Key";
                 inventoryList.appendChild(keyElement);
-
             }
 
 
             break;
         case "door2":
+            console.log('door2');
             if (gameState.door2locked == true) {
                 if (document.getElementById("inv-key") !== null) {
                     gameState.door2locked = false;
                     document.getElementById("inv-key").remove();
                     console.log('Door unlocked!')
+                    doorOpen == true;
+                    building1.classList.remove('hidden');
+                    button.classList.remove('hidden');
                 } else {
                     alert("Door is locked!");
                 }
             } else {
                 console.log('enter building');
+                building1.classList.remove('hidden');
+                button.classList.remove('hidden');
             }
 
 
@@ -89,22 +114,38 @@ gameWindow.onclick = function (e) {
             setTimeout(showMessage, 4 * sec, counterSpeech, "I can talk you know... dummy.");
             setTimeout(showMessage, 8 * sec, mainCharacterSpeech, "Oh sorry, I didn't know signs can talk now...");
             setTimeout(showMessage, 12 * sec, counterSpeech, "Search the left house first, then you may consider searching the one on the right");
+            setTimeout(showMessage, 16 * sec, counterSpeech, "Then, when you find the button. You sho-...");
             break;
+
+        case "buttonInHouse":
+            console.log("clicked button");
+            button.classList.add('hidden');
+            portal.classList.remove('hidden');
+            console.log(button, portal);
+            break;
+
+        case "portalImage":
+            setTimeout(disappear, 1 * sec);
+            setTimeout(alert("Finished game!"), 2 * sec);
+
+            break;
+
+
         default:
             door1.style.opacity = 1;
             sign.style.opacity = 1;
             break;
 
-
-        case "statue":
-            showMessage(mainCharacter, "Wow, cool statue...");
-            setTimeout(showMessage, 2 * sec, counterSpeech, "I can talk you know... dummy.")
     }
 
 }
 
 updateInventory(gameState.inventory, inventoryList);
 
+
+function disappear() {
+    mainCharacter.classList.add('hidden');
+}
 function updateInventory(Inventory, inventoryList) {
 
 }
